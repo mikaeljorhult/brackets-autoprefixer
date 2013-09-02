@@ -59,11 +59,16 @@ define( function( require, exports, module ) {
 				scrollPos = editor.getScrollPos();
 			
 			// Replace text.
-			currentDocument.setText( processedText );
-			
-			// Restore cursor and scroll positons.
-			editor.setCursorPos( cursorPos );
-			editor.setScrollPos( scrollPos.x, scrollPos.y );
+			if ( originalText.replace( /(\s|\n)+$/i, '' ) != processedText ) {
+				currentDocument.setText( processedText );
+				
+				// Restore cursor and scroll positons.
+				editor.setCursorPos( cursorPos );
+				editor.setScrollPos( scrollPos.x, scrollPos.y );
+				
+				// Save file.
+				CommandManager.execute( Commands.FILE_SAVE );
+			}
 		}
 	}
 	
