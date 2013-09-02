@@ -16,7 +16,7 @@ define( function( require, exports, module ) {
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
-		autoprefixer = require( 'thirdparty/autoprefixer/autoprefixer' );
+		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' );
 	
 	// Setup extension.
 	var COMMAND_ID = 'mikaeljorhult.bracketsAutoprefixer.enable',
