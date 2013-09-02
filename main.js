@@ -1,6 +1,6 @@
 /*!
  * Brackets Autoprefixer 0.1.0
- * 
+ * Parse CSS and add vendor prefixes automatically.
  *
  * @author Mikael Jorhult
  * @license http://mikaeljorhult.mit-license.org MIT

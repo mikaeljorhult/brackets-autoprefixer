@@ -1,7 +1,7 @@
 {
 	"name": "mikaeljorhult.brackets-autoprefixer",
 	"title": "Autoprefixer",
-	"description": "",
+	"description": "Parse CSS and add vendor prefixes automatically.",
 	"homepage": "https://github.com/mikaeljorhult/brackets-todo",
 	"version": "0.1.0",
 	"author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
