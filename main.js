@@ -1,5 +1,5 @@
 /*!
- * Brackets Autoprefixer 0.1.0
+ * Brackets Autoprefixer 0.1.1
  * Parse CSS and add vendor prefixes automatically.
  *
  * @author Mikael Jorhult
@@ -14,6 +14,7 @@ define( function( require, exports, module ) {
 		Commands = brackets.getModule( 'command/Commands' ),
 		PreferencesManager = brackets.getModule( 'preferences/PreferencesManager' ),
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
+		Editor = brackets.getModule( 'editor/Editor' ).Editor,
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' );
@@ -24,7 +25,8 @@ define( function( require, exports, module ) {
 		preferences = null,
 		defaultPreferences = {
 			enabled: false
-		};
+		},
+		processed = false;
 	
 	/** 
 	 * Set state of extension.
@@ -50,7 +52,7 @@ define( function( require, exports, module ) {
 	 * Main functionality: Find and show comments.
 	 */
 	function run() {
-		if ( preferences.getValue( 'enabled' ) ) {
+		if ( preferences.getValue( 'enabled' ) && !processed ) {
 			var editor = EditorManager.getCurrentFullEditor(),
 				currentDocument = editor.document,
 				originalText = currentDocument.getText(),
@@ -59,17 +61,44 @@ define( function( require, exports, module ) {
 				scrollPos = editor.getScrollPos();
 			
 			// Replace text.
-			if ( originalText.replace( /(\s|\n)+$/i, '' ) != processedText ) {
-				currentDocument.setText( processedText );
-				
-				// Restore cursor and scroll positons.
-				editor.setCursorPos( cursorPos );
-				editor.setScrollPos( scrollPos.x, scrollPos.y );
-				
-				// Save file.
-				CommandManager.execute( Commands.FILE_SAVE );
-			}
+			currentDocument.setText( formatCode( processedText ) );
+			
+			// Restore cursor and scroll positons.
+			editor.setCursorPos( cursorPos );
+			editor.setScrollPos( scrollPos.x, scrollPos.y );
+			
+			// Save file.
+			CommandManager.execute( Commands.FILE_SAVE );
+			
+			// Prevent file from being processed multiple times.
+			processed = true;
+		} else {
+			processed = false;
 		}
+	}
+	
+	function formatCode( text ) {
+		var useTabs = Editor.getUseTabChar(),
+			char,
+			size,
+			replaceString = '';
+		
+		// Set replacing string to use spaces or tabs.
+		if ( useTabs ) {
+			char = '\t';
+			size = 1;
+		} else {
+			char = ' ';
+			size = Editor.getSpaceUnits();
+		}
+		
+		// Create string to replace with.
+		for ( var i = 0; i < size; i++ ) {
+			replaceString += char;
+		}
+		
+		// Replace any leading whitespace with "correct" indentation.
+		return text.replace( /^\s+/gm, replaceString );
 	}
 	
 	// Register extension.
