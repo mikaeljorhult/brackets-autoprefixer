@@ -1,5 +1,5 @@
 /*!
- * Brackets Autoprefixer 0.1.2
+ * Brackets Autoprefixer 0.1.4
  * Parse CSS and add vendor prefixes automatically.
  *
  * @author Mikael Jorhult
@@ -120,6 +120,7 @@ define( function( require, exports, module ) {
 		$documentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
 			// Only check CSS documents.
 			if ( document === DocumentManager.getCurrentDocument() && document.language.getName() === 'CSS' ) {
+				console.log( 'run' );
 				run();
 			}
 		} );
