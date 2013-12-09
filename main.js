@@ -60,8 +60,6 @@ define( function( require, exports, module ) {
 				cursorPos = editor.getCursorPos(),
 				scrollPos = editor.getScrollPos();
 			
-			console.log( processedText );
-			
 			// Replace text.
 			currentDocument.setText( formatCode( processedText ) );
 			
