@@ -52,7 +52,7 @@ define( function( require, exports, module ) {
 	 * Main functionality: Find and show comments.
 	 */
 	function run() {
-		if ( preferences.getValue( 'enabled' ) && !processed ) {
+		if ( !processed ) {
 			var editor = EditorManager.getCurrentFullEditor(),
 				currentDocument = editor.document,
 				originalText = currentDocument.getText(),
@@ -94,6 +94,11 @@ define( function( require, exports, module ) {
 		
 		// Process document when saved.
 		$documentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
+			// Bail if extension's not enabled.
+			if ( !preferences.getValue( 'enabled' ) ) {
+				return;
+			}
+			
 			// Only check CSS documents.
 			if ( document === DocumentManager.getCurrentDocument() && document.language.getName() === 'CSS' ) {
 				run();
