@@ -56,12 +56,12 @@ define( function( require, exports, module ) {
 			var editor = EditorManager.getCurrentFullEditor(),
 				currentDocument = editor.document,
 				originalText = currentDocument.getText(),
-				processedText = autoprefixer.compile( originalText ),
+				processedText = autoprefixer.process( originalText ),
 				cursorPos = editor.getCursorPos(),
 				scrollPos = editor.getScrollPos();
 			
 			// Replace text.
-			currentDocument.setText( formatCode( processedText ) );
+			currentDocument.setText( processedText.css );
 			
 			// Restore cursor and scroll positons.
 			editor.setCursorPos( cursorPos );
@@ -75,30 +75,6 @@ define( function( require, exports, module ) {
 		} else {
 			processed = false;
 		}
-	}
-	
-	function formatCode( text ) {
-		var useTabs = Editor.getUseTabChar(),
-			char,
-			size,
-			replaceString = '';
-		
-		// Set replacing string to use spaces or tabs.
-		if ( useTabs ) {
-			char = '\t';
-			size = 1;
-		} else {
-			char = ' ';
-			size = Editor.getSpaceUnits();
-		}
-		
-		// Create string to replace with.
-		for ( var i = 0; i < size; i++ ) {
-			replaceString += char;
-		}
-		
-		// Replace any leading whitespace with "correct" indentation.
-		return text.replace( /^\s+/gm, replaceString );
 	}
 	
 	// Register extension.
