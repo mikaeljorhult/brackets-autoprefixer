@@ -17,6 +17,7 @@ define( function( require, exports, module ) {
 		Editor = brackets.getModule( 'editor/Editor' ).Editor,
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
+		Strings = require( 'modules/strings' ),
 		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' );
 	
 	// Setup extension.
@@ -105,8 +106,8 @@ define( function( require, exports, module ) {
 	}
 	
 	// Register extension.
-	CommandManager.register( 'Auto prefix on save', COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
-	CommandManager.register( 'Auto prefix selection', COMMAND_ID_SELECTION, processSelection );
+	CommandManager.register( Strings.MENU_ON_SAVE, COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
+	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, processSelection );
 	
 	// Add command to menu.
 	var menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
