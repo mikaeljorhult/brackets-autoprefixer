@@ -20,8 +20,8 @@ define( function( require, exports, module ) {
 		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' );
 	
 	// Setup extension.
-	var COMMAND_ID = 'mikaeljorhult.bracketsAutoprefixer.enable',
-		MENU_NAME = 'Autoprefixer',
+	var COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
+		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		preferences = null,
 		defaultPreferences = {
 			enabled: false
@@ -45,11 +45,11 @@ define( function( require, exports, module ) {
 		preferences.setValue( 'enabled', enabled );
 		
 		// Mark menu item as enabled/disabled.
-		CommandManager.get( COMMAND_ID ).setChecked( enabled );
+		CommandManager.get( COMMAND_ID_AUTOSAVE ).setChecked( enabled );
 	}
 	
 	/**
-	 * Main functionality: Find and show comments.
+	 * Process whole current file.
 	 */
 	function run() {
 		if ( !processed ) {
@@ -77,13 +77,42 @@ define( function( require, exports, module ) {
 		}
 	}
 	
+	/**
+	 * Process current selection.
+	 */
+	function processSelection() {
+		var editor = EditorManager.getCurrentFullEditor(),
+			currentSelection,
+			originalText,
+			processedText;
+		
+		// Only proceed if there is a selection.
+		if ( editor.hasSelection() ) {
+			// Get position and text of selection.
+			currentSelection = editor.getSelection();
+			originalText = editor.getSelectedText();
+			
+			// Bail if not able to process.
+			try {
+				processedText = autoprefixer.process( originalText );
+			} catch ( e ) {
+				return;
+			}
+			
+			// Replace selected text with processed text.
+			editor.document.replaceRange( processedText.css, currentSelection.start, currentSelection.end );
+		}
+	}
+	
 	// Register extension.
-	CommandManager.register( MENU_NAME, COMMAND_ID, toggleAutoprefixer );
+	CommandManager.register( 'Auto prefix on save', COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
+	CommandManager.register( 'Auto prefix selection', COMMAND_ID_SELECTION, processSelection );
 	
 	// Add command to menu.
 	var menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
 	menu.addMenuDivider();
-	menu.addMenuItem( COMMAND_ID );
+	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
+	menu.addMenuItem( COMMAND_ID_SELECTION );
 	
 	// Initialize PreferenceStorage.
 	preferences = PreferencesManager.getPreferenceStorage( module, defaultPreferences );
