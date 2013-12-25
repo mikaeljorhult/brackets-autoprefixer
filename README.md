@@ -36,6 +36,10 @@ from the repository. This allows you to try new features that might not have bee
 
 
 ## Usage
+Autoprefixer may be used in one of two ways, automatically on save and manual on a selection.
 
-Go to the Edit menu and enable the extension by clicking on the Autoprefixer command. Autoprefixer will parse 
-the code whenever a CSS document is saved and add and/or remove vendor prefixes where appropriate.
+The automatic mode is used by toggling "Auto prefix on save" on in the Edit menu. This will process the whole
+file each time the document is saved and add and/or remove vendor prefixes where appropriate.
+
+For more control over where prefixes are added and removed a piece of code may be selected and processed by
+clicking "Auto prefix selection" in the Edit menu. Only the selected part of the document will be processed.
