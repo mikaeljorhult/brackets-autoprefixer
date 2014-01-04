@@ -1,5 +1,8 @@
 # Brackets Autoprefixer Changelog
 
+## 0.2.2
+* Update Autoprefixer to version 1.0.20140103.
+
 ## 0.2.1
 * Function to process only current selection.
 * Possibility to localize extension.
