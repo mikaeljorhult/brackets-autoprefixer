@@ -1,5 +1,5 @@
 /*!
- * Brackets Autoprefixer 0.2.3
+ * Brackets Autoprefixer 0.2.4
  * Parse CSS and add vendor prefixes automatically.
  *
  * @author Mikael Jorhult
