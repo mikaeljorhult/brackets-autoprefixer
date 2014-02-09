@@ -15,5 +15,10 @@
 	},
 	"engines": {
 		"brackets": ">=0.20.0"
+	},
+	"devDependencies": {
+		"grunt": "0.4.x",
+		"load-grunt-tasks": "0.2.x",
+		"grunt-contrib-jshint": "0.7.x"
 	}
 }
