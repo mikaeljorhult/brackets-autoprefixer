@@ -1,5 +1,5 @@
 /*!
- * Brackets Autoprefixer 0.2.6
+ * Brackets Autoprefixer 0.2.7
  * Parse CSS and add vendor prefixes automatically.
  *
  * @author Mikael Jorhult
@@ -14,20 +14,22 @@ define( function( require, exports, module ) {
 		Commands = brackets.getModule( 'command/Commands' ),
 		PreferencesManager = brackets.getModule( 'preferences/PreferencesManager' ),
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
-		Editor = brackets.getModule( 'editor/Editor' ).Editor,
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 		Strings = require( 'modules/strings' ),
-		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' );
-	
-	// Setup extension.
-	var COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
+		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' ),
+		
+		// Setup extension.
+		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		preferences = null,
 		defaultPreferences = {
 			enabled: false
 		},
-		processed = false;
+		processed = false,
+		
+		// Hook into menus.
+		menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
 	
 	/** 
 	 * Set state of extension.
@@ -110,7 +112,6 @@ define( function( require, exports, module ) {
 	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, processSelection );
 	
 	// Add command to menu.
-	var menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
 	menu.addMenuDivider();
 	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
 	menu.addMenuItem( COMMAND_ID_SELECTION );
