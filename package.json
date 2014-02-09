@@ -5,7 +5,14 @@
 	"homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
 	"version": "0.2.6",
 	"author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
-	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mikaeljorhult/brackets-autoprefixer"
+	},
+	"license": {
+		"type": "MIT",
+		"url": "http://mikaeljorhult.mit-license.org/"
+	},
 	"engines": {
 		"brackets": ">=0.20.0"
 	}
