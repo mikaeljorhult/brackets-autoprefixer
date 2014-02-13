@@ -112,7 +112,6 @@ define( function( require, exports, module ) {
 	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, processSelection );
 	
 	// Add command to menu.
-	menu.addMenuDivider();
 	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
 	menu.addMenuItem( COMMAND_ID_SELECTION );
 	
