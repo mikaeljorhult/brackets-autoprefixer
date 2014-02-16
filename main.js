@@ -16,8 +16,7 @@ define( function( require, exports, module ) {
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
-		Strings = require( 'modules/strings' ),
-		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' ),
+		Strings = require( 'modules/Strings' ),
 		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
 		// Setup extension.
