@@ -18,6 +18,7 @@ define( function( require, exports, module ) {
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 		Strings = require( 'modules/strings' ),
 		autoprefixer = require( 'vendor/autoprefixer/autoprefixer' ),
+		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
 		// Setup extension.
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
