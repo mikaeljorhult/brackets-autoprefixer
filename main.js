@@ -17,11 +17,13 @@ define( function( require, exports, module ) {
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 		Strings = require( 'modules/Strings' ),
+		SettingsDialog = require( 'modules/SettingsDialog' ),
 		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
 		// Setup extension.
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
+		COMMAND_ID_SETTINGS = 'mikaeljorhult.bracketsAutoprefixer.settings',
 		preferences = null,
 		defaultPreferences = {
 			enabled: false
@@ -107,13 +109,22 @@ define( function( require, exports, module ) {
 		}
 	}
 	
+	/**
+	 * Open settings dialog.
+	 */
+	function showSettingsDialog() {
+		SettingsDialog.show( preferences );
+	}
+	
 	// Register extension.
 	CommandManager.register( Strings.MENU_ON_SAVE, COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
 	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, processSelection );
+	CommandManager.register( Strings.MENU_SETTINGS, COMMAND_ID_SETTINGS, showSettingsDialog );
 	
 	// Add command to menu.
 	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
 	menu.addMenuItem( COMMAND_ID_SELECTION );
+	menu.addMenuItem( COMMAND_ID_SETTINGS );
 	
 	// Initialize PreferenceStorage.
 	preferences = PreferencesManager.getPreferenceStorage( module, defaultPreferences );
