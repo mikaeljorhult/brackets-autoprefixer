@@ -61,12 +61,17 @@ define( function( require, exports, module ) {
 			var editor = EditorManager.getCurrentFullEditor(),
 				currentDocument = editor.document,
 				originalText = currentDocument.getText(),
-				processedText = autoprefixer.process( originalText ),
+				processedText = process( originalText ),
 				cursorPos = editor.getCursorPos(),
 				scrollPos = editor.getScrollPos();
 			
+			// Bail if processing was unsuccessful.
+			if ( processedText === false ) {
+				return;
+			}
+			
 			// Replace text.
-			currentDocument.setText( processedText.css );
+			currentDocument.setText( processedText );
 			
 			// Restore cursor and scroll positons.
 			editor.setCursorPos( cursorPos );
@@ -96,17 +101,30 @@ define( function( require, exports, module ) {
 			// Get position and text of selection.
 			currentSelection = editor.getSelection();
 			originalText = editor.getSelectedText();
+			processedText = process( originalText );
 			
-			// Bail if not able to process.
-			try {
-				processedText = autoprefixer.process( originalText );
-			} catch ( e ) {
-				return;
+			if ( processedText !== false ) {
+				// Replace selected text with processed text.
+				editor.document.replaceRange( processedText.css, currentSelection.start, currentSelection.end );
 			}
-			
-			// Replace selected text with processed text.
-			editor.document.replaceRange( processedText.css, currentSelection.start, currentSelection.end );
 		}
+	}
+	
+	/**
+	 * Process text using Autoprefixer.
+	 */
+	function process( originalText ) {
+		var processedText = false;
+		
+		// Return false if not able to process.
+		try {
+			processedText = autoprefixer.process( originalText ).css;
+		} catch ( e ) {
+			return false;
+		}
+		
+		// Return processed text if successful.
+		return processedText;
 	}
 	
 	/**
