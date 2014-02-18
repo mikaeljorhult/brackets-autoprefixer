@@ -1,5 +1,9 @@
 # Brackets Autoprefixer Changelog
 
+## 0.3.0
+* Added settings dialog.
+* Update Autoprefixer to version 1.1.
+
 ## 0.2.7
 * Use Grunt for hinting code.
 * Update Autoprefixer to version 1.0.20140213.
