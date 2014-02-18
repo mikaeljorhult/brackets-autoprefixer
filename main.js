@@ -24,10 +24,11 @@ define( function( require, exports, module ) {
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		COMMAND_ID_SETTINGS = 'mikaeljorhult.bracketsAutoprefixer.settings',
-		preferences = null,
 		defaultPreferences = {
-			enabled: false
+			enabled: false,
+			visualCascade: false
 		},
+		preferences = PreferencesManager.getPreferenceStorage( module, defaultPreferences ),
 		processed = false,
 		
 		// Hook into menus.
@@ -118,7 +119,9 @@ define( function( require, exports, module ) {
 		
 		// Return false if not able to process.
 		try {
-			processedText = autoprefixer.process( originalText ).css;
+			processedText = autoprefixer( {
+				cascade: preferences.getValue( 'visualCascade' )
+			} ).process( originalText ).css;
 		} catch ( e ) {
 			return false;
 		}
@@ -144,9 +147,6 @@ define( function( require, exports, module ) {
 	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
 	menu.addMenuItem( COMMAND_ID_SELECTION );
 	menu.addMenuItem( COMMAND_ID_SETTINGS );
-	
-	// Initialize PreferenceStorage.
-	preferences = PreferencesManager.getPreferenceStorage( module, defaultPreferences );
 	
 	// Register panel and setup event listeners.
 	AppInit.appReady( function() {
