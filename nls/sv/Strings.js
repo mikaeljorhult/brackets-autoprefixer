@@ -6,5 +6,9 @@ define( {
 	// Menu.
 	MENU_ON_SAVE:    "Lägg till prefix vid spara",
 	MENU_SELECTION:  "Lägg till prefix på markering",
-	MENU_SETTINGS:   "Inställningar för Autoprefixer..."
+	MENU_SETTINGS:   "Inställningar för Autoprefixer...",
+	
+	// Settings dialog.
+	SETTINGS_TITLE:          "Inställningar för Autoprefixer",
+	SETTINGS_VISUAL_CASCADE: "Kompensera indentering för prefix"
 } );
