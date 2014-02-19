@@ -10,5 +10,5 @@ define( {
 	
 	// Settings dialog.
 	SETTINGS_TITLE:          "Inställningar för Autoprefixer",
-	SETTINGS_VISUAL_CASCADE: "Kompensera indentering för prefix"
+	SETTINGS_VISUAL_CASCADE: "Visuell prefixordning"
 } );
