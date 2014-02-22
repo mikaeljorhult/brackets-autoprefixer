@@ -106,7 +106,7 @@ define( function( require, exports, module ) {
 			
 			if ( processedText !== false ) {
 				// Replace selected text with processed text.
-				editor.document.replaceRange( processedText.css, currentSelection.start, currentSelection.end );
+				editor.document.replaceRange( processedText, currentSelection.start, currentSelection.end );
 			}
 		}
 	}
