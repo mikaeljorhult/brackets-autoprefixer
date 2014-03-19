@@ -3,7 +3,7 @@
 	"title": "Autoprefixer",
 	"description": "Parse CSS and add vendor prefixes automatically.",
 	"homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
-	"version": "0.3.3",
+	"version": "0.4.0",
 	"author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
 	"repository": {
 		"type": "git",
@@ -14,7 +14,7 @@
 		"url": "http://mikaeljorhult.mit-license.org/"
 	},
 	"engines": {
-		"brackets": ">=0.20.0"
+		"brackets": ">=0.37.0"
 	},
 	"devDependencies": {
 		"grunt": "0.4.x",
