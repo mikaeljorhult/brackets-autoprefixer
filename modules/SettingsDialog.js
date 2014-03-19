@@ -23,7 +23,14 @@ define( function( require, exports ) {
 	 * Initialize dialog values.
 	 */
 	function init() {
-		setValues( preferences.getAllValues() );
+		var values = {},
+			properties = [ 'visualCascade' ];
+		
+		$.each( properties, function( index, value ) {
+			values[ value ] = preferences.get( value );
+		} );
+		
+		setValues( values );
 	}
 	
 	/**
@@ -49,8 +56,10 @@ define( function( require, exports ) {
 				var $dialog = dialog.getElement();
 				
 				// Save each preference.
-				preferences.setValue( 'visualCascade', $( '#autoprefixer-settings-visualCascade', $dialog ).prop( 'checked' ) );
+				preferences.set( 'visualCascade', $( '#autoprefixer-settings-visualCascade', $dialog ).prop( 'checked' ) );
+				
+				preferences.save();
 			}
-		});
+		} );
 	};
-});
+} );

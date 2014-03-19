@@ -5,7 +5,7 @@
  * @author Mikael Jorhult
  * @license http://mikaeljorhult.mit-license.org MIT
  */
-define( function( require, exports, module ) {
+define( function( require ) {
 	'use strict';
 	
 	// Get module dependencies.
@@ -24,21 +24,21 @@ define( function( require, exports, module ) {
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		COMMAND_ID_SETTINGS = 'mikaeljorhult.bracketsAutoprefixer.settings',
-		defaultPreferences = {
-			enabled: false,
-			visualCascade: false
-		},
-		preferences = PreferencesManager.getPreferenceStorage( module, defaultPreferences ),
+		preferences = PreferencesManager.getExtensionPrefs( 'mikaeljorhult.bracketsAutoprefixer' ),
 		processed = false,
 		
 		// Hook into menus.
 		menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
+		
+	// Define preferences.
+	preferences.definePreference( 'enabled', 'boolean', false );
+	preferences.definePreference( 'visualCascade', 'boolean', false );
 	
 	/** 
 	 * Set state of extension.
 	 */
 	function toggleAutoprefixer() {
-		var enabled = preferences.getValue( 'enabled' );
+		var enabled = preferences.get( 'enabled' );
 		
 		enableAutoprefixer( !enabled );
 	}
@@ -48,7 +48,7 @@ define( function( require, exports, module ) {
 	 */
 	function enableAutoprefixer( enabled ) {
 		// Save enabled state.
-		preferences.setValue( 'enabled', enabled );
+		preferences.set( 'enabled', enabled );
 		
 		// Mark menu item as enabled/disabled.
 		CommandManager.get( COMMAND_ID_AUTOSAVE ).setChecked( enabled );
@@ -120,7 +120,7 @@ define( function( require, exports, module ) {
 		// Return false if not able to process.
 		try {
 			processedText = autoprefixer( {
-				cascade: preferences.getValue( 'visualCascade' )
+				cascade: preferences.get( 'visualCascade' )
 			} ).process( originalText ).css;
 		} catch ( e ) {
 			return false;
@@ -155,7 +155,7 @@ define( function( require, exports, module ) {
 		// Process document when saved.
 		$documentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
 			// Bail if extension's not enabled.
-			if ( !preferences.getValue( 'enabled' ) ) {
+			if ( !preferences.get( 'enabled' ) ) {
 				return;
 			}
 			
@@ -166,7 +166,7 @@ define( function( require, exports, module ) {
 		} );
 		
 		// Enable extension if loaded last time.
-		if ( preferences.getValue( 'enabled' ) ) {
+		if ( preferences.get( 'enabled' ) ) {
 			enableAutoprefixer( true );
 		}
 	} );
