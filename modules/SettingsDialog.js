@@ -39,7 +39,8 @@ define( function( require, exports ) {
 	exports.show = function( prefs ) {
 		// Compile dialog template.
 		var compiledTemplate = Mustache.render( settingsDialogTemplate, {
-			Strings: Strings
+			Strings: Strings,
+			browsers: prefs.get( 'browsers' )
 		} );
 		
 		// Save dialog to variable.
@@ -53,10 +54,20 @@ define( function( require, exports ) {
 		dialog.done( function( buttonId ) {
 			// Save preferences if OK button was clicked.
 			if ( buttonId === 'ok' ) {
-				var $dialog = dialog.getElement();
+				var $dialog = dialog.getElement(),
+					browsers = $( '#autoprefixer-settings-browsers input', $dialog ).map( function() {
+						// Get value of each text input.
+						var value = $.trim( $( this ).val() );
+						
+						// Only add it to array if non-empty.
+						if ( value.length > 0 ) {
+							return value;
+						}
+					} ).get();
 				
 				// Save each preference.
 				preferences.set( 'visualCascade', $( '#autoprefixer-settings-visualCascade', $dialog ).prop( 'checked' ) );
+				preferences.set( 'browsers', browsers );
 				
 				preferences.save();
 			}

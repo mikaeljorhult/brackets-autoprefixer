@@ -4,10 +4,22 @@
 	</div>
 	
 	<div class="modal-body table-striped tab-content">
-		<label for="autoprefixer-settings-visualCascade">
-			<input type="checkbox" name="autoprefixer-settings-visualCascade" id="autoprefixer-settings-visualCascade" />
-			{{ Strings.SETTINGS_VISUAL_CASCADE }}
+		<p class="dialog-message">
+			<label for="autoprefixer-settings-visualCascade">
+				<input type="checkbox" name="autoprefixer-settings-visualCascade" id="autoprefixer-settings-visualCascade" />
+				{{ Strings.SETTINGS_VISUAL_CASCADE }}
+			</label>
+		</p>
+		
+		<label>
+			{{ Strings.SETTINGS_BROWSERS }}
 		</label>
+		
+		<table id="autoprefixer-settings-browsers">
+			{{ #browsers }}
+				<tr><td><input type="input" name="autoprefixer-settings-browsers[]" value="{{ . }}" /></td></tr>
+			{{ /browsers }}
+		</table>
 	</div>
 	
 	<div class="modal-footer">
