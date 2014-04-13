@@ -10,5 +10,6 @@ define( {
 	
 	// Settings dialog.
 	SETTINGS_TITLE:          "Autoprefixer Settings",
-	SETTINGS_VISUAL_CASCADE: "Visual cascade"
+	SETTINGS_VISUAL_CASCADE: "Visual cascade",
+	SETTINGS_BROWSERS:       "Browsers"
 } );

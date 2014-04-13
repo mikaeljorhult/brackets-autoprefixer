@@ -10,5 +10,6 @@ define( {
 	
 	// Settings dialog.
 	SETTINGS_TITLE:          "Inställningar för Autoprefixer",
-	SETTINGS_VISUAL_CASCADE: "Visuell prefixordning"
+	SETTINGS_VISUAL_CASCADE: "Visuell prefixordning",
+	SETTINGS_BROWSERS:       "Webbläsare"
 } );
