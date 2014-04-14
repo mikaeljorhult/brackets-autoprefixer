@@ -6,6 +6,9 @@ define( function( require, exports ) {
 		
 		// Extension modules.
 		Strings = require( 'modules/Strings' ),
+		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
+		
+		// Templates.
 		settingsDialogTemplate = require( 'text!../html/settings-dialog.html' ),
 		settingsDialogBrowser = require( 'text!../html/settings-browser.html' ),
 		
@@ -13,6 +16,16 @@ define( function( require, exports ) {
 		dialog,
 		$dialog,
 		preferences;
+	
+	/**
+	 * Reset all preferences to defaults.
+	 */
+	function resetValues() {
+		preferences.set( 'visualCascade', false );
+		preferences.set( 'browsers', autoprefixer[ 'default' ] );
+		
+		preferences.save();
+	}
 	
 	/**
 	 * Set each value of the preferences in dialog.
@@ -55,6 +68,9 @@ define( function( require, exports ) {
 		
 		// Register event listeners.
 		$dialog
+			.on( 'click', '.reset-preferences', function() {
+				resetValues();
+			} )
 			.on( 'click', '.remove-browser', function() {
 				$( this ).parents( 'tr.browser' ).remove();
 			} )

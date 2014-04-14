@@ -2,6 +2,7 @@ define( {
 	// Generic.
 	OK:     "OK",
 	CANCEL: "Cancel",
+	RESET:  "Reset",
 	
 	// Menu.
 	MENU_ON_SAVE:   "Auto prefix on save",

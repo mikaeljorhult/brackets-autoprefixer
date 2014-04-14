@@ -2,6 +2,7 @@ define( {
 	// Generic.
 	OK:     "OK",
 	CANCEL: "Avbryt",
+	RESET:  "Återställ",
 	
 	// Menu.
 	MENU_ON_SAVE:    "Lägg till prefix vid spara",
