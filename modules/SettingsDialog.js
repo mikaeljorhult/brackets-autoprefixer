@@ -7,9 +7,11 @@ define( function( require, exports ) {
 		// Extension modules.
 		Strings = require( 'modules/Strings' ),
 		settingsDialogTemplate = require( 'text!../html/settings-dialog.html' ),
+		settingsDialogBrowser = require( 'text!../html/settings-browser.html' ),
 		
 		// Variables.
 		dialog,
+		$dialog,
 		preferences;
 	
 	/**
@@ -41,21 +43,37 @@ define( function( require, exports ) {
 		var compiledTemplate = Mustache.render( settingsDialogTemplate, {
 			Strings: Strings,
 			browsers: prefs.get( 'browsers' )
-		} );
+		}, { browsers: settingsDialogBrowser } );
 		
 		// Save dialog to variable.
 		dialog = Dialogs.showModalDialogUsingTemplate( compiledTemplate );
+		$dialog = dialog.getElement();
 		preferences = prefs;
 		
 		// Initialize dialog values.
 		init();
 		
+		// Register event listeners.
+		$dialog
+			.on( 'click', '.remove-browser', function() {
+				$( this ).parents( 'tr.browser' ).remove();
+			} )
+			.on( 'click', '.add-browser', function() {
+				var $table = $( '#autoprefixer-settings-browsers' );
+				
+				// Compile empty table row and set focus in text input.
+				$table
+					.append( Mustache.render( settingsDialogBrowser, {
+						browsers: [ ' ' ]
+					} ) )
+					.find( 'input[ type="text" ]' ).last().val( '' ).focus();
+			} );
+		
 		// Open dialog.
 		dialog.done( function( buttonId ) {
 			// Save preferences if OK button was clicked.
 			if ( buttonId === 'ok' ) {
-				var $dialog = dialog.getElement(),
-					browsers = $( '#autoprefixer-settings-browsers input', $dialog ).map( function() {
+				var browsers = $( '#autoprefixer-settings-browsers input[ type="text" ]', $dialog ).map( function() {
 						// Get value of each text input.
 						var value = $.trim( $( this ).val() );
 						

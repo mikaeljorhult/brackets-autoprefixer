@@ -3,23 +3,26 @@
 		<h1 class="dialog-title">{{ Strings.SETTINGS_TITLE }}</h1>
 	</div>
 	
-	<div class="modal-body table-striped tab-content">
-		<p class="dialog-message">
+	<div class="modal-body tab-content">
+		<div class="dialog-message">
 			<label for="autoprefixer-settings-visualCascade">
 				<input type="checkbox" name="autoprefixer-settings-visualCascade" id="autoprefixer-settings-visualCascade" />
 				{{ Strings.SETTINGS_VISUAL_CASCADE }}
 			</label>
-		</p>
+		</div>
 		
-		<label>
-			{{ Strings.SETTINGS_BROWSERS }}
-		</label>
 		
-		<table id="autoprefixer-settings-browsers">
-			{{ #browsers }}
-				<tr><td><input type="input" name="autoprefixer-settings-browsers[]" value="{{ . }}" /></td></tr>
-			{{ /browsers }}
-		</table>
+		<div class="dialog-message">
+			<label>
+				{{ Strings.SETTINGS_BROWSERS }}
+			</label>
+			
+			<table id="autoprefixer-settings-browsers">
+				{{> browsers }}
+			</table>
+			
+			<input type="button" class="add-browser" value="+" />
+		</div>
 	</div>
 	
 	<div class="modal-footer">
