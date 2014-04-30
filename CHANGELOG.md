@@ -1,5 +1,9 @@
 # Brackets Autoprefixer Changelog
 
+## 0.5.0
+* Set targeted browsers through settings dialog.
+* Update Autoprefixer to version 1.1.20140430.
+
 ## 0.4.3
 * Update Autoprefixer to version 1.1.20140410.
 
