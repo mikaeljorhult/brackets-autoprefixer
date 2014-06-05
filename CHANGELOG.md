@@ -1,5 +1,8 @@
 # Brackets Autoprefixer Changelog
 
+## 0.5.2
+* Update Autoprefixer to version 1.1.20140605.
+
 ## 0.5.1
 * Update Autoprefixer to version 1.1.20140512.
 
