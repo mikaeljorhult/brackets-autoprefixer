@@ -17,8 +17,8 @@
 		"brackets": ">=0.37.0"
 	},
 	"devDependencies": {
-		"grunt": "0.4.x",
-		"load-grunt-tasks": "0.2.x",
-		"grunt-contrib-jshint": "0.7.x"
+		"gulp": "^3.8.6",
+		"gulp-jshint": "^1.7.1",
+		"gulp-load-plugins": "^0.5.3"
 	}
 }

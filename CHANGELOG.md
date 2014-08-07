@@ -1,5 +1,8 @@
 # Brackets Autoprefixer Changelog
 
+## 0.5.8
+* Use Gulp for tasks instead of Grunt.
+
 ## 0.5.7
 * Update Autoprefixer to version 2.2.
 
