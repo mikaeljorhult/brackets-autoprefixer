@@ -16,6 +16,9 @@
 	"engines": {
 		"brackets": ">=0.37.0"
 	},
+	"i18n": [
+		"en", "sv"
+	],
 	"devDependencies": {
 		"gulp": "^3.8.6",
 		"gulp-jshint": "^1.7.1",
