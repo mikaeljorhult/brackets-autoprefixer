@@ -1,7 +1,9 @@
 # Brackets Autoprefixer Changelog
 
 ## 0.5.8
+* Update Autoprefixer to version 2.2.20140804.
 * Use Gulp for tasks instead of Grunt.
+* Use JSCS for checking code styling.
 
 ## 0.5.7
 * Update Autoprefixer to version 2.2.
