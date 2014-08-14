@@ -21,6 +21,7 @@
 	],
 	"devDependencies": {
 		"gulp": "^3.8.6",
+		"gulp-jscs": "^1.1.0",
 		"gulp-jshint": "^1.7.1",
 		"gulp-load-plugins": "^0.5.3"
 	}
