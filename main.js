@@ -122,8 +122,8 @@ define( function( require ) {
 		try {
 			processedText = autoprefixer(
 				preferences.get( 'browsers' ), {
-				cascade: preferences.get( 'visualCascade' )
-			} ).process( originalText ).css;
+					cascade: preferences.get( 'visualCascade' )
+				} ).process( originalText ).css;
 		} catch ( e ) {
 			return false;
 		}
