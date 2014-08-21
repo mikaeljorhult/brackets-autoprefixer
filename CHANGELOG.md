@@ -1,5 +1,9 @@
 # Brackets Autoprefixer Changelog
 
+## 0.5.10 (Unreleased)
+* Spanish translation. Thanks to Iván Barcia (@ivarcia).
+* Galician translation. Thanks to Iván Barcia (@ivarcia).
+
 ## 0.5.9
 * Update Autoprefixer to version 2.2.20140818.
 
