@@ -2,7 +2,7 @@
 
 Brackets/Edge Code extension that parses CSS documents and add vendor prefixes automatically.
 
-This extension uses [autoprefixer](https://github.com/ai/autoprefixer), a tool that parses your CSS and
+This extension uses [Autoprefixer](https://github.com/postcss/autoprefixer), a tool that parses your CSS and
 add/remove vendor prefixes where appropriate according to data from [Can I Use](http://caniuse.com/).
 This means that you can write you CSS without having to worry about which vendor prefixes you have to include.
 As soon as you save your file this will be done for you.
