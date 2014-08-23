@@ -1,6 +1,7 @@
 # Brackets Autoprefixer Changelog
 
-## 0.5.10 (Unreleased)
+## 0.5.10
+* Update Autoprefixer to version 3.0.
 * Spanish translation. Thanks to Iván Barcia (@ivarcia).
 * Galician translation. Thanks to Iván Barcia (@ivarcia).
 
