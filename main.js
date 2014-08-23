@@ -120,10 +120,10 @@ define( function( require ) {
 		
 		// Return false if not able to process.
 		try {
-			processedText = autoprefixer(
-				preferences.get( 'browsers' ), {
-					cascade: preferences.get( 'visualCascade' )
-				} ).process( originalText ).css;
+			processedText = autoprefixer( {
+				browsers: preferences.get( 'browsers' ),
+				cascade: preferences.get( 'visualCascade' )
+			} ).process( originalText ).css;
 		} catch ( e ) {
 			return false;
 		}
