@@ -6,6 +6,7 @@ define( function( require, exports, module ) {
 		de: true,
 		es: true,
 		gl: true,
+		it: true,
 		sv: true,
 		uk: true
 	};
