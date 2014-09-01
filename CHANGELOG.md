@@ -1,7 +1,8 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
-## 0.5.11 - Unreleased
+## 0.5.11 - 2014-09-01
+* Update Autoprefixer to version 3.0.1.20140826.
 * German translation. Thanks to Marcel Gerber (@MarcelGerber).
 * Italian translation. Thanks to Nicolò Ribaudo (@nicolo-ribaudo).
 
