@@ -8,6 +8,7 @@ define( function( require, exports, module ) {
 		gl: true,
 		it: true,
 		sv: true,
-		uk: true
+		uk: true,
+		fr: true
 	};
 } );
