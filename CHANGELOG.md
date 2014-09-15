@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 0.5.12 - Unreleased
+* Update Autoprefixer to version 3.1.0.20140911.
 * French translation. Thanks to rainje (@rainje).
 
 ## 0.5.11 - 2014-09-01
