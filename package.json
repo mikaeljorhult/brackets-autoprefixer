@@ -19,6 +19,11 @@
 	"i18n": [
 		"de", "en", "es", "fr", "gl", "it", "sv", "uk"
 	],
+	"package-i18n": {
+		"it": {
+			"description": "Aggiunge automaticamente i prefissi dei browser al CSS"
+		}
+    	},
 	"devDependencies": {
 		"gulp": "^3.8.6",
 		"gulp-jscs": "^1.1.0",
