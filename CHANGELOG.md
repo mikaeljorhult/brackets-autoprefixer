@@ -1,6 +1,11 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.5.15 - 2014-11-20
+* Update Autoprefixer to version 4.0.0.
+* Swedish description.
+* Italian description. Thanks to Nicolò Ribaudo (@nicolo-ribaudo).
+
 ## 0.5.14 - 2014-10-17
 * Update Autoprefixer to version 3.1.2.20141016.
 
