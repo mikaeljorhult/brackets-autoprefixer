@@ -21,9 +21,12 @@
 	],
 	"package-i18n": {
 		"it": {
-			"description": "Aggiunge automaticamente i prefissi dei browser al CSS"
+			"description": "Aggiunge automaticamente i prefissi dei browser al CSS."
+		},
+		"sv": {
+			"description": "Går igenom din CSS-kod och lägger till webbläsarprefix automatiskt."
 		}
-    	},
+    },
 	"devDependencies": {
 		"gulp": "^3.8.6",
 		"gulp-jscs": "^1.1.0",
