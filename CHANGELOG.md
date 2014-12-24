@@ -1,6 +1,9 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.5.18 - 2014-12-24
+* Update Autoprefixer to version 4.0.2.2.
+
 ## 0.5.17 - 2014-12-08
 * Update Autoprefixer to version 4.0.2.
 
