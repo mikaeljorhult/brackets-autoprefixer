@@ -1,6 +1,9 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.5.20 - 2015-02-01
+* Update Autoprefixer to version 5.1.1.
+
 ## 0.5.19 - 2015-01-17
 * Update Autoprefixer to version 5.0.0.1.
 
