@@ -152,10 +152,8 @@ define( function( require ) {
 	
 	// Register panel and setup event listeners.
 	AppInit.appReady( function() {
-		var $documentManager = $( DocumentManager );
-		
 		// Process document when saved.
-		$documentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
+		DocumentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
 			// Bail if extension's not enabled.
 			if ( !preferences.get( 'enabled' ) ) {
 				return;
