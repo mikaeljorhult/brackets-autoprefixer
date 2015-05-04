@@ -7,7 +7,6 @@ define( function( require, exports ) {
 		// Extension modules.
 		Defaults = require( 'modules/Defaults' ),
 		Strings = require( 'modules/Strings' ),
-		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
 		// Templates.
 		settingsDialogTemplate = require( 'text!../html/settings-dialog.html' ),
@@ -24,8 +23,9 @@ define( function( require, exports ) {
 	function resetValues() {
 		preferences.set( 'visualCascade', false );
 		preferences.set( 'browsers', Defaults.browsers );
-		
 		preferences.save();
+		
+		init();
 	}
 	
 	/**
@@ -33,6 +33,10 @@ define( function( require, exports ) {
 	 */
 	function setValues( values ) {
 		$( '#autoprefixer-settings-visualCascade' ).prop( 'checked', values.visualCascade );
+		
+		$dialog.find( '#autoprefixer-settings-browsers' ).html( Mustache.render( settingsDialogBrowser, {
+			browsers: preferences.get( 'browsers' )
+		} ) );
 	}
 	
 	/**
