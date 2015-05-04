@@ -5,6 +5,7 @@ define( function( require, exports ) {
 	var Dialogs = brackets.getModule( 'widgets/Dialogs' ),
 		
 		// Extension modules.
+		Defaults = require( 'modules/Defaults' ),
 		Strings = require( 'modules/Strings' ),
 		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
@@ -22,7 +23,7 @@ define( function( require, exports ) {
 	 */
 	function resetValues() {
 		preferences.set( 'visualCascade', false );
-		preferences.set( 'browsers', autoprefixer[ 'default' ] );
+		preferences.set( 'browsers', Defaults.browsers );
 		
 		preferences.save();
 	}

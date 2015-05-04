@@ -16,6 +16,7 @@ define( function( require ) {
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
+		Defaults = require( 'modules/Defaults' ),
 		Strings = require( 'modules/Strings' ),
 		SettingsDialog = require( 'modules/SettingsDialog' ),
 		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
@@ -33,7 +34,7 @@ define( function( require ) {
 	// Define preferences.
 	preferences.definePreference( 'enabled', 'boolean', false );
 	preferences.definePreference( 'visualCascade', 'boolean', false );
-	preferences.definePreference( 'browsers', 'object', autoprefixer[ 'default' ] );
+	preferences.definePreference( 'browsers', 'object', Defaults.browsers );
 	
 	/** 
 	 * Set state of extension.
@@ -116,12 +117,13 @@ define( function( require ) {
 	 * Process text using Autoprefixer.
 	 */
 	function process( originalText ) {
-		var processedText = false;
+		var processedText = false,
+			browsers = preferences.get( 'browsers' );
 		
 		// Return false if not able to process.
 		try {
 			processedText = autoprefixer( {
-				browsers: preferences.get( 'browsers' ),
+				browsers: browsers.length > 0 ? browsers : Defaults.browsers,
 				cascade: preferences.get( 'visualCascade' )
 			} ).process( originalText ).css;
 		} catch ( e ) {
