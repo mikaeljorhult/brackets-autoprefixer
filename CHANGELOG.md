@@ -1,6 +1,11 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.6.0 - 2015-05-04
+* Resetting settings do not close the settings dialog anymore.
+* Use Brackets modules own event emitters.
+* Update Autoprefixer to version 5.1.11.
+
 ## 0.5.20 - 2015-02-01
 * Update Autoprefixer to version 5.1.1.
 
