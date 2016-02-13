@@ -1,6 +1,9 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.6.3 - 2016-02-13
+* Update Autoprefixer to version 6.3.3.
+
 ## 0.6.2 - 2016-01-21
 * Update Autoprefixer to version 6.3.1.
 * Use new API for Autoprefixer.
