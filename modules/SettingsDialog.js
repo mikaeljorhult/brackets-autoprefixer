@@ -3,6 +3,7 @@ define( function( require, exports ) {
 	
 	// Get module dependencies.
 	var Dialogs = brackets.getModule( 'widgets/Dialogs' ),
+		TemplateEngine = brackets.getModule( 'thirdparty/mustache/mustache' ),
 		
 		// Extension modules.
 		Defaults = require( 'modules/Defaults' ),
@@ -16,7 +17,7 @@ define( function( require, exports ) {
 		dialog,
 		$dialog,
 		preferences;
-	
+
 	/**
 	 * Reset all preferences to defaults.
 	 */
@@ -34,7 +35,7 @@ define( function( require, exports ) {
 	function setValues( values ) {
 		$( '#autoprefixer-settings-visualCascade' ).prop( 'checked', values.visualCascade );
 		
-		$dialog.find( '#autoprefixer-settings-browsers' ).html( Mustache.render( settingsDialogBrowser, {
+		$dialog.find( '#autoprefixer-settings-browsers' ).html( TemplateEngine.render( settingsDialogBrowser, {
 			browsers: preferences.get( 'browsers' )
 		} ) );
 	}
@@ -58,7 +59,7 @@ define( function( require, exports ) {
 	 */
 	exports.show = function( prefs ) {
 		// Compile dialog template.
-		var compiledTemplate = Mustache.render( settingsDialogTemplate, {
+		var compiledTemplate = TemplateEngine.render( settingsDialogTemplate, {
 			Strings: Strings,
 			browsers: prefs.get( 'browsers' )
 		}, { browsers: settingsDialogBrowser } );
@@ -84,7 +85,7 @@ define( function( require, exports ) {
 				
 				// Compile empty table row and set focus in text input.
 				$table
-					.append( Mustache.render( settingsDialogBrowser, {
+					.append( TemplateEngine.render( settingsDialogBrowser, {
 						browsers: [ ' ' ]
 					} ) )
 					.find( 'input[ type="text" ]' ).last().val( '' ).focus();
