@@ -16,6 +16,7 @@ define( function( require ) {
 
 		// Get extension modules.
         AutoprefixOnSave = require( 'modules/AutoprefixOnSave' ),
+        AutoprefixSelection = require( 'modules/AutoprefixSelection' ),
 		Preferences = require( 'modules/Preferences' ),
 		Processor = require( 'modules/Processor' ),
 		Strings = require( 'modules/Strings' ),
@@ -49,32 +50,9 @@ define( function( require ) {
 		CommandManager.get( COMMAND_ID_AUTOSAVE ).setChecked( enabled );
 	}
 
-	/**
-	 * Process current selection.
-	 */
-	function processSelection() {
-		var editor = EditorManager.getCurrentFullEditor(),
-			currentSelection,
-			originalText,
-			processedText;
-
-		// Only proceed if there is a selection.
-		if ( editor.hasSelection() ) {
-			// Get position and text of selection.
-			currentSelection = editor.getSelection();
-			originalText = editor.getSelectedText();
-			processedText = Processor.process( originalText );
-
-			if ( processedText !== false ) {
-				// Replace selected text with processed text.
-				editor.document.replaceRange( processedText, currentSelection.start, currentSelection.end );
-			}
-		}
-	}
-
 	// Register extension.
 	CommandManager.register( Strings.MENU_ON_SAVE, COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
-	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, processSelection );
+	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, AutoprefixSelection.process );
 	CommandManager.register( Strings.MENU_SETTINGS, COMMAND_ID_SETTINGS, SettingsDialog.show );
 
 	// Add command to menu.
