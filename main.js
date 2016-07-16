@@ -16,10 +16,12 @@ define( function( require ) {
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
 		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
+
+		// Get extension modules.
 		Defaults = require( 'modules/Defaults' ),
+		Processor = require( 'modules/Processor' ),
 		Strings = require( 'modules/Strings' ),
 		SettingsDialog = require( 'modules/SettingsDialog' ),
-		autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
 		
 		// Setup extension.
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
@@ -64,7 +66,7 @@ define( function( require ) {
 			var editor = EditorManager.getCurrentFullEditor(),
 				currentDocument = editor.document,
 				originalText = currentDocument.getText(),
-				processedText = process( originalText ),
+				processedText = Processor.process( originalText ),
 				cursorPos = editor.getCursorPos(),
 				scrollPos = editor.getScrollPos();
 			
@@ -104,34 +106,13 @@ define( function( require ) {
 			// Get position and text of selection.
 			currentSelection = editor.getSelection();
 			originalText = editor.getSelectedText();
-			processedText = process( originalText );
+			processedText = Processor.process( originalText );
 			
 			if ( processedText !== false ) {
 				// Replace selected text with processed text.
 				editor.document.replaceRange( processedText, currentSelection.start, currentSelection.end );
 			}
 		}
-	}
-	
-	/**
-	 * Process text using Autoprefixer.
-	 */
-	function process( originalText ) {
-		var processedText = false,
-			browsers = preferences.get( 'browsers' );
-		
-		// Return false if not able to process.
-		try {
-			processedText = autoprefixer.process( originalText, {
-				browsers: browsers.length > 0 ? browsers : Defaults.browsers,
-				cascade: preferences.get( 'visualCascade' )
-			} ).css;
-		} catch ( e ) {
-			return false;
-		}
-		
-		// Return processed text if successful.
-		return processedText;
 	}
 	
 	/**
