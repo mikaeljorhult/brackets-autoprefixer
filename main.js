@@ -116,17 +116,17 @@ define( function( require ) {
 	/**
 	 * Process text using Autoprefixer.
 	 */
-	function process(originalText) {
+	function process( originalText ) {
 		var processedText = false,
 			browsers = preferences.get( 'browsers' );
 		
 		// Return false if not able to process.
 		try {
-			processedText = autoprefixer.process(originalText, {
+			processedText = autoprefixer.process( originalText, {
 				browsers: browsers.length > 0 ? browsers : Defaults.browsers,
-				cascade: preferences.get('visualCascade')
-			}).css;
-		} catch (e) {
+				cascade: preferences.get( 'visualCascade' )
+			} ).css;
+		} catch ( e ) {
 			return false;
 		}
 		
