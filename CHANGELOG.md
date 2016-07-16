@@ -1,6 +1,10 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.6.4 - 2016-06-16
+* Update Autoprefixer to version 6.3.7.
+* Require Mustache as a module instead of global object.
+
 ## 0.6.3 - 2016-02-13
 * Update Autoprefixer to version 6.3.3.
 
