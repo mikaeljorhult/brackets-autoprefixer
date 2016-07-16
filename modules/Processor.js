@@ -1,23 +1,21 @@
 define( function( require ) {
     'use strict';
 
-    var PreferencesManager = brackets.getModule( 'preferences/PreferencesManager' ),
-        Defaults = require( 'modules/Defaults' ),
-        autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' ),
-        preferences = PreferencesManager.getExtensionPrefs( 'mikaeljorhult.bracketsAutoprefixer' );
+    var Preferences = require( 'modules/Preferences' ),
+        autoprefixer = require( 'modules/vendor/autoprefixer/Autoprefixer' );
 
     /**
      * Process text using Autoprefixer.
      */
     function process( originalText ) {
         var processedText = false,
-            browsers = preferences.get( 'browsers' );
+            browsers = Preferences.get( 'browsers' );
 
         // Return false if not able to process.
         try {
             processedText = autoprefixer.process( originalText, {
-                browsers: browsers.length > 0 ? browsers : Defaults.browsers,
-                cascade: preferences.get( 'visualCascade' )
+                browsers: browsers.length > 0 ? browsers : Preferences.defaults.browsers,
+                cascade: Preferences.get( 'visualCascade' )
             } ).css;
         } catch ( e ) {
             return false;

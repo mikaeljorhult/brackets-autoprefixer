@@ -6,7 +6,7 @@ define( function( require, exports ) {
 		TemplateEngine = brackets.getModule( 'thirdparty/mustache/mustache' ),
 		
 		// Extension modules.
-		Defaults = require( 'modules/Defaults' ),
+		Preferences = require( 'modules/Preferences' ),
 		Strings = require( 'modules/Strings' ),
 		
 		// Templates.
@@ -15,17 +15,15 @@ define( function( require, exports ) {
 		
 		// Variables.
 		dialog,
-		$dialog,
-		preferences;
+		$dialog;
 
 	/**
 	 * Reset all preferences to defaults.
 	 */
 	function resetValues() {
-		preferences.set( 'visualCascade', false );
-		preferences.set( 'browsers', Defaults.browsers );
-		preferences.save();
-		
+		Preferences.set( 'visualCascade', false );
+		Preferences.set( 'browsers', Preferences.defaults.browsers );
+
 		init();
 	}
 	
@@ -36,7 +34,7 @@ define( function( require, exports ) {
 		$( '#autoprefixer-settings-visualCascade' ).prop( 'checked', values.visualCascade );
 		
 		$dialog.find( '#autoprefixer-settings-browsers' ).html( TemplateEngine.render( settingsDialogBrowser, {
-			browsers: preferences.get( 'browsers' )
+			browsers: Preferences.get( 'browsers' )
 		} ) );
 	}
 	
@@ -48,7 +46,7 @@ define( function( require, exports ) {
 			properties = [ 'visualCascade' ];
 		
 		$.each( properties, function( index, value ) {
-			values[ value ] = preferences.get( value );
+			values[ value ] = Preferences.get( value );
 		} );
 		
 		setValues( values );
@@ -57,17 +55,16 @@ define( function( require, exports ) {
 	/**
 	 * Exposed method to show dialog.
 	 */
-	exports.show = function( prefs ) {
+	exports.show = function() {
 		// Compile dialog template.
 		var compiledTemplate = TemplateEngine.render( settingsDialogTemplate, {
 			Strings: Strings,
-			browsers: prefs.get( 'browsers' )
+			browsers: Preferences.get( 'browsers' )
 		}, { browsers: settingsDialogBrowser } );
 		
 		// Save dialog to variable.
 		dialog = Dialogs.showModalDialogUsingTemplate( compiledTemplate );
 		$dialog = dialog.getElement();
-		preferences = prefs;
 		
 		// Initialize dialog values.
 		init();
@@ -106,10 +103,10 @@ define( function( require, exports ) {
 					} ).get();
 				
 				// Save each preference.
-				preferences.set( 'visualCascade', $( '#autoprefixer-settings-visualCascade', $dialog ).prop( 'checked' ) );
-				preferences.set( 'browsers', browsers );
-				
-				preferences.save();
+				Preferences.set( 'visualCascade', $( '#autoprefixer-settings-visualCascade', $dialog ).prop( 'checked' ) );
+				Preferences.set( 'browsers', browsers );
+
+				Preferences.save();
 			}
 		} );
 	};
