@@ -11,12 +11,11 @@ define( function( require ) {
 	// Get module dependencies.
 	var Menus = brackets.getModule( 'command/Menus' ),
 		CommandManager = brackets.getModule( 'command/CommandManager' ),
-		Commands = brackets.getModule( 'command/Commands' ),
 		EditorManager = brackets.getModule( 'editor/EditorManager' ),
-		DocumentManager = brackets.getModule( 'document/DocumentManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 
 		// Get extension modules.
+        AutoprefixOnSave = require( 'modules/AutoprefixOnSave' ),
 		Preferences = require( 'modules/Preferences' ),
 		Processor = require( 'modules/Processor' ),
 		Strings = require( 'modules/Strings' ),
@@ -26,7 +25,6 @@ define( function( require ) {
 		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		COMMAND_ID_SETTINGS = 'mikaeljorhult.bracketsAutoprefixer.settings',
-		processed = false,
 
 		// Hook into menus.
 		menu = Menus.getMenu( Menus.AppMenuBar.EDIT_MENU );
@@ -49,40 +47,6 @@ define( function( require ) {
 
 		// Mark menu item as enabled/disabled.
 		CommandManager.get( COMMAND_ID_AUTOSAVE ).setChecked( enabled );
-	}
-
-	/**
-	 * Process whole current file.
-	 */
-	function run() {
-		if ( !processed ) {
-			var editor = EditorManager.getCurrentFullEditor(),
-				currentDocument = editor.document,
-				originalText = currentDocument.getText(),
-				processedText = Processor.process( originalText ),
-				cursorPos = editor.getCursorPos(),
-				scrollPos = editor.getScrollPos();
-
-			// Bail if processing was unsuccessful.
-			if ( processedText === false ) {
-				return;
-			}
-
-			// Replace text.
-			currentDocument.setText( processedText );
-
-			// Restore cursor and scroll positons.
-			editor.setCursorPos( cursorPos );
-			editor.setScrollPos( scrollPos.x, scrollPos.y );
-
-			// Save file.
-			CommandManager.execute( Commands.FILE_SAVE );
-
-			// Prevent file from being processed multiple times.
-			processed = true;
-		} else {
-			processed = false;
-		}
 	}
 
 	/**
@@ -121,19 +85,6 @@ define( function( require ) {
 
 	// Register panel and setup event listeners.
 	AppInit.appReady( function() {
-		// Process document when saved.
-		DocumentManager.on( 'documentSaved.autoprefixer', function( event, document ) {
-			// Bail if extension's not enabled.
-			if ( !Preferences.get( 'enabled' ) ) {
-				return;
-			}
-
-			// Only check CSS documents.
-			if ( document === DocumentManager.getCurrentDocument() && document.language.getName() === 'CSS' ) {
-				run();
-			}
-		} );
-
 		// Enable extension if loaded last time.
 		if ( Preferences.get( 'enabled' ) ) {
 			enableAutoprefixer( true );
