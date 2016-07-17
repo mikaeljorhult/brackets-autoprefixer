@@ -15,7 +15,8 @@ define( function( require ) {
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 
 		// Get extension modules.
-        AutoprefixOnSave = require( 'modules/AutoprefixOnSave' ),
+		AutoprefixOnChange = require( 'modules/AutoprefixOnChange' ),
+		AutoprefixOnSave = require( 'modules/AutoprefixOnSave' ),
         AutoprefixSelection = require( 'modules/AutoprefixSelection' ),
 		Preferences = require( 'modules/Preferences' ),
 		Processor = require( 'modules/Processor' ),
@@ -23,7 +24,8 @@ define( function( require ) {
 		SettingsDialog = require( 'modules/SettingsDialog' ),
 
 		// Setup extension.
-		COMMAND_ID_AUTOSAVE = 'mikaeljorhult.bracketsAutoprefixer.enable',
+		COMMAND_ID_ONSAVE = 'mikaeljorhult.bracketsAutoprefixer.onsave',
+		COMMAND_ID_ONCHANGE = 'mikaeljorhult.bracketsAutoprefixer.onchange',
 		COMMAND_ID_SELECTION = 'mikaeljorhult.bracketsAutoprefixer.selection',
 		COMMAND_ID_SETTINGS = 'mikaeljorhult.bracketsAutoprefixer.settings',
 
@@ -33,39 +35,62 @@ define( function( require ) {
 	/**
 	 * Set state of extension.
 	 */
-	function toggleAutoprefixer() {
+	function toggleOnSave() {
 		var enabled = Preferences.get( 'enabled' );
-
-		enableAutoprefixer( !enabled );
+		enableOnSave( !enabled );
 	}
 
 	/**
 	 * Initialize extension.
 	 */
-	function enableAutoprefixer( enabled ) {
+	function enableOnSave( enabled ) {
 		// Save enabled state.
 		Preferences.set( 'enabled', enabled );
 
 		// Mark menu item as enabled/disabled.
-		CommandManager.get( COMMAND_ID_AUTOSAVE ).setChecked( enabled );
+		CommandManager.get( COMMAND_ID_ONSAVE ).setChecked( enabled );
+	}
+
+	/**
+	 * Set state of extension.
+	 */
+	function toggleOnChange() {
+		var state = Preferences.get( 'onChange' );
+		enableOnChange( !state );
+	}
+
+	/**
+	 * Initialize extension.
+	 */
+	function enableOnChange( state ) {
+		// Save enabled state.
+		Preferences.set( 'onChange', state );
+
+		// Mark menu item as enabled/disabled.
+		CommandManager.get( COMMAND_ID_ONCHANGE ).setChecked( state );
 	}
 
 	// Register extension.
-	CommandManager.register( Strings.MENU_ON_SAVE, COMMAND_ID_AUTOSAVE, toggleAutoprefixer );
+	CommandManager.register( Strings.MENU_ON_SAVE, COMMAND_ID_ONSAVE, toggleOnSave );
+	CommandManager.register( Strings.MENU_ON_CHANGE, COMMAND_ID_ONCHANGE, toggleOnChange );
 	CommandManager.register( Strings.MENU_SELECTION, COMMAND_ID_SELECTION, AutoprefixSelection.process );
 	CommandManager.register( Strings.MENU_SETTINGS, COMMAND_ID_SETTINGS, SettingsDialog.show );
 
 	// Add command to menu.
 	menu.addMenuDivider();
-	menu.addMenuItem( COMMAND_ID_AUTOSAVE );
+	menu.addMenuItem( COMMAND_ID_ONSAVE );
+	menu.addMenuItem( COMMAND_ID_ONCHANGE );
 	menu.addMenuItem( COMMAND_ID_SELECTION );
 	menu.addMenuItem( COMMAND_ID_SETTINGS );
 
-	// Register panel and setup event listeners.
+	// Enable functions.
 	AppInit.appReady( function() {
-		// Enable extension if loaded last time.
 		if ( Preferences.get( 'enabled' ) ) {
-			enableAutoprefixer( true );
+			enableOnSave( true );
+		}
+
+		if ( Preferences.get( 'onChange' ) ) {
+			enableOnChange( true );
 		}
 	} );
 } );

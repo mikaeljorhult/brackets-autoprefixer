@@ -7,6 +7,7 @@ define( function( require ) {
 
     // Define preferences.
     preferences.definePreference( 'enabled', 'boolean', false );
+    preferences.definePreference( 'onChange', 'boolean', false );
     preferences.definePreference( 'visualCascade', 'boolean', false );
     preferences.definePreference( 'browsers', 'object', Defaults.browsers );
 
