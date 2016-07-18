@@ -6,7 +6,6 @@ define( function( require ) {
         DocumentManager = brackets.getModule( 'document/DocumentManager' ),
         EditorManager = brackets.getModule( 'editor/EditorManager' ),
         FileSystem = brackets.getModule( 'filesystem/FileSystem' ),
-        LanguageManager = brackets.getModule( 'language/LanguageManager' ),
 
         // Get extension modules.
         Paths = require( 'modules/Paths' ),
@@ -66,7 +65,7 @@ define( function( require ) {
             }
 
             // Only process CSS files.
-            if ( [ 'css' ].indexOf( LanguageManager.getLanguageForPath( file.fullPath ).getId() ) > -1 ) {
+            if ( Paths.isFileType( file, [ 'css' ] ) ) {
                 // Check if file is open in an editor.
                 document = DocumentManager.getOpenDocumentForPath( file.fullPath );
 

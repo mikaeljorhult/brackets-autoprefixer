@@ -9,6 +9,7 @@ define( function( require ) {
         EditorManager = brackets.getModule( 'editor/EditorManager' ),
 
         // Get extension modules.
+        Paths = require( 'modules/Paths' ),
         Preferences = require( 'modules/Preferences' ),
         Processor = require( 'modules/Processor' ),
 
@@ -61,7 +62,7 @@ define( function( require ) {
             }
 
             // Only check CSS documents.
-            if ( document === DocumentManager.getCurrentDocument() && document.language.getName() === 'CSS' ) {
+            if ( document === DocumentManager.getCurrentDocument() && Paths.isFileType( document, [ 'css' ] ) ) {
                 process();
             }
         } );

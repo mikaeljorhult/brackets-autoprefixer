@@ -2,7 +2,8 @@ define( function() {
     'use strict';
 
     // Get dependencies.
-    var ProjectManager = brackets.getModule( 'project/ProjectManager' ),
+    var LanguageManager = brackets.getModule( 'language/LanguageManager' ),
+        ProjectManager = brackets.getModule( 'project/ProjectManager' ),
 
         // Variables.
         projectRoot;
@@ -24,6 +25,23 @@ define( function() {
     }
 
     /**
+     * Check if file is of specified types.
+     */
+    function isFileType( file, types ) {
+        var type = file.constructor.name.toLowerCase(),
+            path;
+
+        // Check type of object and get file path.
+        if ( type === 'file' ) {
+            path = file.fullPath;
+        } else if ( type === 'document' ) {
+            path = file.file.fullPath;
+        }
+
+        return types.indexOf( LanguageManager.getLanguageForPath( path ).getId() ) > -1
+    }
+
+    /**
      * Make a full path relative to project root.
      */
     function makeRelative( path ) {
@@ -38,6 +56,7 @@ define( function() {
     // Return module.
     return {
         isFileInProjectRoot: isFileInProjectRoot,
+        isFileType: isFileType,
         makeRelative: makeRelative,
         projectRoot: getProjectRoot
     };
