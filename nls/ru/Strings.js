@@ -6,6 +6,7 @@ define( {
 	
 	// Menu.
 	MENU_ON_SAVE: "Добавлять префиксы при сохранении файла",
+	//MENU_ON_CHANGE: "Auto prefix when file is changed",
 	MENU_SELECTION: "Добавить префикс для выделенного фрагмента",
 	MENU_SETTINGS: "Настроить Autoprefixer...",
 	

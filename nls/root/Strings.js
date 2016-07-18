@@ -6,7 +6,7 @@ define( {
 	
 	// Menu.
 	MENU_ON_SAVE:   "Auto prefix on save",
-	MENU_ON_CHANGE: "Auto prefix on change",
+	MENU_ON_CHANGE: "Auto prefix when file is changed",
 	MENU_SELECTION: "Auto prefix selection",
 	MENU_SETTINGS:  "Autoprefixer Settings...",
 	
