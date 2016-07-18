@@ -17,6 +17,13 @@ define( function() {
     }
 
     /**
+     * Check if file is located in project root.
+     */
+    function isFileInProjectRoot( file ) {
+        return ( file !== null && file.isFile === true && file.fullPath.indexOf( getProjectRoot() ) > -1 );
+    }
+
+    /**
      * Make a full path relative to project root.
      */
     function makeRelative( path ) {
@@ -30,6 +37,7 @@ define( function() {
 
     // Return module.
     return {
+        isFileInProjectRoot: isFileInProjectRoot,
         makeRelative: makeRelative,
         projectRoot: getProjectRoot
     };

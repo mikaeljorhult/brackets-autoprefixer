@@ -52,17 +52,40 @@ define( function( require ) {
     AppInit.appReady( function() {
         // Listeners for file changes.
         FileSystem.on( 'change.autoprefixer', function( event, file ) {
+            var document,
+                processedText;
+
             // Bail if change detection is not enabled.
             if ( !Preferences.get( 'onChange' ) ) {
                 return;
             }
 
             // Bail if not a file or file is outside current project root.
-            if ( file === null || file.isFile !== true || file.fullPath.indexOf( Paths.projectRoot() ) === -1 ) {
+            if ( !Paths.isFileInProjectRoot( file ) ) {
                 return;
             }
 
+            // Only process CSS files.
             if ( [ 'css' ].indexOf( LanguageManager.getLanguageForPath( file.fullPath ).getId() ) > -1 ) {
+                // Check if file is open in an editor.
+                document = DocumentManager.getOpenDocumentForPath( file.fullPath );
+
+                if ( document ) {
+                    // No need to process current document if on save is enabled.
+                    if ( EditorManager.getCurrentFullEditor().document.file.fullPath === file.fullPath ) {
+                        return;
+                    }
+
+                    // Process text from document.
+                    processedText = Processor.process( document.getText() )
+
+                    // Check that process was successful before replacing text.
+                    if ( processedText ) {
+                        document.refreshText( processedText, document.diskTimestamp );
+                    }
+                }
+
+                // Go ahead and process.
                 process( file );
             }
         } );
