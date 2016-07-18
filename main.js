@@ -11,7 +11,6 @@ define( function( require ) {
 	// Get module dependencies.
 	var Menus = brackets.getModule( 'command/Menus' ),
 		CommandManager = brackets.getModule( 'command/CommandManager' ),
-		EditorManager = brackets.getModule( 'editor/EditorManager' ),
 		AppInit = brackets.getModule( 'utils/AppInit' ),
 
 		// Get extension modules.
@@ -19,7 +18,6 @@ define( function( require ) {
 		AutoprefixOnSave = require( 'modules/AutoprefixOnSave' ),
         AutoprefixSelection = require( 'modules/AutoprefixSelection' ),
 		Preferences = require( 'modules/Preferences' ),
-		Processor = require( 'modules/Processor' ),
 		Strings = require( 'modules/Strings' ),
 		SettingsDialog = require( 'modules/SettingsDialog' ),
 

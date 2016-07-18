@@ -25,24 +25,11 @@ define( function( require ) {
             return;
         }
 
-        // Read file.
-        file.read( function( error, content ) {
-            var processedContent;
-
-            // Only process file if it was read without errors.
-            if ( !error ) {
-                processedContent = Processor.process( content );
-
-                // Store result if text was successfully prefixed.
-                if ( processedContent ) {
-                    // Add filename to list of files being processed.
-                    processing.push( file.fullPath );
-
-                    // Write processed content to file.
-                    file.write( processedContent );
-                }
-            }
-        } );
+        // Pass file for processing.
+        if ( Processor.process( file ) ) {
+            // Add filename to list of files being processed.
+            processing.push( file.fullPath );
+        }
     }
 
     /**
@@ -51,8 +38,7 @@ define( function( require ) {
     AppInit.appReady( function() {
         // Listeners for file changes.
         FileSystem.on( 'change.autoprefixer', function( event, file ) {
-            var document,
-                processedText;
+            var document;
 
             // Bail if change detection is not enabled.
             if ( !Preferences.get( 'onChange' ) ) {
@@ -75,13 +61,7 @@ define( function( require ) {
                         return;
                     }
 
-                    // Process text from document.
-                    processedText = Processor.process( document.getText() )
-
-                    // Check that process was successful before replacing text.
-                    if ( processedText ) {
-                        document.refreshText( processedText, document.diskTimestamp );
-                    }
+                    Processor.process( document );
                 }
 
                 // Go ahead and process.
