@@ -78,7 +78,7 @@ define( function( require ) {
 	menu.addMenuDivider();
 	menu.addMenuItem( COMMAND_ID_ONSAVE );
 	menu.addMenuItem( COMMAND_ID_ONCHANGE );
-	menu.addMenuItem( COMMAND_ID_SELECTION );
+	menu.addMenuItem( COMMAND_ID_SELECTION, 'Ctrl-Shift-P' );
 	menu.addMenuItem( COMMAND_ID_SETTINGS );
 
 	// Enable functions.
