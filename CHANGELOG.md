@@ -1,6 +1,11 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.7.0 - Unreleased
+* Update Autoprefixer to version 6.7.5.
+* Automatically prefix files edited outside of Brackets.
+* Key command (CTRL+Shift+P) for prefixing current selection.
+
 ## 0.6.4 - 2016-06-16
 * Update Autoprefixer to version 6.3.7.
 * Require Mustache as a module instead of global object.
