@@ -1,36 +1,39 @@
 {
-	"name": "mikaeljorhult.brackets-autoprefixer",
-	"title": "Autoprefixer",
-	"description": "Parse CSS and add vendor prefixes automatically.",
-	"homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
-	"version": "0.7.1",
-	"author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/mikaeljorhult/brackets-autoprefixer"
-	},
-	"license": {
-		"type": "MIT",
-		"url": "http://mikaeljorhult.mit-license.org/"
-	},
-	"engines": {
-		"brackets": ">=0.37.0"
-	},
-	"i18n": [
-		"de", "en", "es", "fr", "gl", "it", "sv", "uk"
-	],
-	"package-i18n": {
-		"it": {
-			"description": "Aggiunge automaticamente i prefissi dei browser al CSS."
-		},
-		"sv": {
-			"description": "Går igenom din CSS-kod och lägger till webbläsarprefix automatiskt."
-		}
+    "name": "mikaeljorhult.brackets-autoprefixer",
+    "title": "Autoprefixer",
+    "description": "Parse CSS and add vendor prefixes automatically.",
+    "homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
+    "version": "0.7.1",
+    "author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mikaeljorhult/brackets-autoprefixer"
     },
-	"devDependencies": {
-		"gulp": "^3.8.6",
-		"gulp-jscs": "^1.1.0",
-		"gulp-jshint": "^1.7.1",
-		"gulp-load-plugins": "^0.5.3"
-	}
+    "license": {
+        "type": "MIT",
+        "url": "http://mikaeljorhult.mit-license.org/"
+    },
+    "engines": {
+        "brackets": ">=0.37.0"
+    },
+    "i18n": [
+		"de", "en", "es", "fr", "gl", "it", "sv", "uk", "ru"
+	],
+    "package-i18n": {
+        "it": {
+            "description": "Aggiunge automaticamente i prefissi dei browser al CSS."
+        },
+        "sv": {
+            "description": "Går igenom din CSS-kod och lägger till webbläsarprefix automatiskt."
+        },
+        "ru": {
+            "description": "Парсит CSS и добавляет закрывающие коды автоматически."
+        }
+    },
+    "devDependencies": {
+        "gulp": "^3.8.6",
+        "gulp-jscs": "^1.1.0",
+        "gulp-jshint": "^1.7.1",
+        "gulp-load-plugins": "^0.5.3"
+    }
 }
