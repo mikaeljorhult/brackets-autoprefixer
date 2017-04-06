@@ -1,6 +1,9 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.7.2 - Unreleased
+* Fixes to russian translation. Thanks to Igor Ryzhenkov (@sdir01).
+
 ## 0.7.1 - 2017-03-29
 * Update Autoprefixer to version 6.7.7.
 * Cast browser preference as array instead of object.
