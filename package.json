@@ -30,10 +30,13 @@
             "description": "Парсит CSS и добавляет закрывающие коды автоматически."
         }
     },
+    "scripts": {
+        "test": "./node_modules/.bin/eslint . --ext .js"
+    },
     "devDependencies": {
-        "gulp": "^3.8.6",
-        "gulp-jscs": "^1.1.0",
-        "gulp-jshint": "^1.7.1",
-        "gulp-load-plugins": "^0.5.3"
+        "eslint": "^3.19.0",
+        "eslint-config-standard": "^7.1.0",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^2.1.1"
     }
 }
