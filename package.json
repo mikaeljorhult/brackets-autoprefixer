@@ -1,42 +1,50 @@
 {
-    "name": "mikaeljorhult.brackets-autoprefixer",
-    "title": "Autoprefixer",
-    "description": "Parse CSS and add vendor prefixes automatically.",
-    "homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
-    "version": "0.7.1",
-    "author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mikaeljorhult/brackets-autoprefixer"
+  "name": "mikaeljorhult.brackets-autoprefixer",
+  "title": "Autoprefixer",
+  "description": "Parse CSS and add vendor prefixes automatically.",
+  "homepage": "https://github.com/mikaeljorhult/brackets-autoprefixer",
+  "version": "0.7.1",
+  "author": "Mikael Jorhult <mikael@jorhult.se> (http://jorhult.se)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikaeljorhult/brackets-autoprefixer"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "http://mikaeljorhult.mit-license.org/"
+  },
+  "engines": {
+    "brackets": ">=0.37.0"
+  },
+  "i18n": [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "gl",
+    "it",
+    "sv",
+    "uk",
+    "ru"
+  ],
+  "package-i18n": {
+    "it": {
+      "description": "Aggiunge automaticamente i prefissi dei browser al CSS."
     },
-    "license": {
-        "type": "MIT",
-        "url": "http://mikaeljorhult.mit-license.org/"
+    "sv": {
+      "description": "Går igenom din CSS-kod och lägger till webbläsarprefix automatiskt."
     },
-    "engines": {
-        "brackets": ">=0.37.0"
-    },
-    "i18n": [
-		"de", "en", "es", "fr", "gl", "it", "sv", "uk", "ru"
-	],
-    "package-i18n": {
-        "it": {
-            "description": "Aggiunge automaticamente i prefissi dei browser al CSS."
-        },
-        "sv": {
-            "description": "Går igenom din CSS-kod och lägger till webbläsarprefix automatiskt."
-        },
-        "ru": {
-            "description": "Парсит CSS и добавляет закрывающие коды автоматически."
-        }
-    },
-    "scripts": {
-        "test": "./node_modules/.bin/eslint . --ext .js"
-    },
-    "devDependencies": {
-        "eslint": "^3.19.0",
-        "eslint-config-standard": "^7.1.0",
-        "eslint-plugin-promise": "^3.5.0",
-        "eslint-plugin-standard": "^2.1.1"
+    "ru": {
+      "description": "Парсит CSS и добавляет закрывающие коды автоматически."
     }
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/eslint . --ext .js"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
+  }
 }
