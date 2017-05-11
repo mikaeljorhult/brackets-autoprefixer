@@ -16,6 +16,7 @@
     "semi": [
       "error",
       "always"
-    ]
+    ],
+    "import/no-webpack-loader-syntax": 0
   }
 }
