@@ -69,7 +69,7 @@ define(function (require) {
 
     // Return false if not able to process.
     try {
-      processedText = autoprefixer.process(text, {
+      processedText = autoprefixer.process(text, {}, {
         browsers: browsers.length > 0 ? browsers : Preferences.defaults.browsers,
         cascade: Preferences.get('visualCascade')
       }).css;
