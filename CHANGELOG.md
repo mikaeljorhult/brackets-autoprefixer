@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 0.7.2 - Unreleased
+* Update Autoprefixer to version 7.0.1.
 * Fixes to russian translation. Thanks to Igor Ryzhenkov (@sdir01).
 
 ## 0.7.1 - 2017-03-29
