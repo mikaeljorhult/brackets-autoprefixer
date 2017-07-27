@@ -10,6 +10,7 @@ define(function (require, exports, module) {
     it: true,
     ru: true,
     sv: true,
-    uk: true
+    uk: true,
+    pl: true
   };
 });

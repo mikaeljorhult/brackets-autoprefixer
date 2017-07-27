@@ -22,7 +22,8 @@
     "it",
     "sv",
     "uk",
-    "ru"
+    "ru",
+    "pl"
   ],
   "package-i18n": {
     "it": {
@@ -33,6 +34,9 @@
     },
     "ru": {
       "description": "Парсит CSS и добавляет закрывающие коды автоматически."
+    },
+    "pl": {
+      "description": "Parsuj CSS i dodawaj prefiksy dostawców automatycznie."
     }
   },
   "scripts": {
