@@ -1,6 +1,10 @@
 # Brackets Autoprefixer Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.7.5 - 2017-09-07
+* Update Autoprefixer to version 7.1.4.
+* Polish translation. Thanks to Michał Korczak (@MajkelKorczak).
+
 ## 0.7.4 - 2017-05-18
 * Update Autoprefixer to version 7.1.0.
 
